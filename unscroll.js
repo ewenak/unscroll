@@ -23,13 +23,20 @@ var remReels = () => {
 }
 
 var remExplores = () =>  {
-  if (window.location.href === 'https://www.instagram.com/explore/') {
+  if (window.location.pathname === '/explore/') {
+    let postContainer = document.querySelector('main > :not(nav)');
+    if (!!postContainer) {
+      postContainer.remove();
+    }
+
+    // Gardons l'ancien code pour le cas où
     var proposedPosts = document.querySelectorAll('a[href*="/p/"]');
-    if(!proposedPosts) {return}
-    proposedPosts.forEach(function(link) {
+    if(!!proposedPosts) {
+      proposedPosts.forEach(function(link) {
         link.remove();
-    });
-}
+      });
+    }
+  }
 }
 
 var onPageUpdate = () => {
