@@ -39,15 +39,26 @@ var remExplores = () =>  {
   }
 }
 
-var onPageUpdate = () => {
+function onPageUpdate() {
   remReels();
   remExplores();
 }
 
+const observer = new MutationObserver((mutationsList) => {
+  for (const mutation of mutationsList) {
+    if (mutation.type === 'childList') {
+      onPageUpdate();
+    }
+  }
+});
+
+observer.observe(document.body, {
+  childList: true,
+  subtree: true
+});
+
 // Gestionnaire d'événements pour ajuster la position lors du défilement
 document.addEventListener('scroll', adjustScrollPosition);
-document.addEventListener('DOMNodeInserted', remReels);
-document.addEventListener('DOMNodeInserted', remExplores);
 onPageUpdate();
 
 console.log("Unscroll active")
