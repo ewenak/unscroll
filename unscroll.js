@@ -3,7 +3,7 @@ var reels_element = null
 
 var adjustScrollPosition = () => {
     var imageElement = document.querySelector('img[src="/images/instagram/xig/web/illo-confirm-refresh-light.png"]');
-    endread_element = imageElement.parentElement.parentElement;
+    endread_element = imageElement?.parentElement?.parentElement;
     if(!endread_element) {
     	return;
     }
@@ -16,9 +16,9 @@ var adjustScrollPosition = () => {
 }
 
 var remReels = () => {
-    reels_element = document.querySelector('a[href="/reels/"]').parentElement;
-    if(reels_element) {
-    	reels_element.remove();
+    reels_link = document.querySelector('a[href="/reels/"]');
+    if(reels_link) {
+    	reels_link.parentElement.remove();
     }
 }
 
